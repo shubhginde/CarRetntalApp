@@ -1,0 +1,123 @@
+<apex:page controller="RentalCarsAppController" id="CarsView">
+    <apex:form>
+
+        <head>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                crossorigin="anonymous" />
+            <style>
+                .card,
+                .input-group {
+                    margin-top: 10px;
+                    margin-right: 10px;
+                }
+            </style>
+        </head>
+
+        <div class="container">
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" id="searchInput" />
+                <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+            </div>
+
+            <div class="row">
+                <apex:repeat value="{!CarList}" var="car" id="car_List">
+                    <div class="col-md">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h3 class="card-title" style="width: 100%">
+                                    <span class="badge bg-secondary position-relative">{!car.Brand__r.Name & ' ' & car.Model__r.Name}</span>
+                                </h3>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">Car ID</span>
+                                    <span class="badge bg-light text-dark">{!car.Name}</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">Car Owner</span>
+                                    <span class="badge bg-light text-dark">{!car.Car_Owner__r.Name}</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">Brand</span>
+                                    <span class="badge bg-light text-dark">{!car.Brand__r.Name}</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">Model</span>
+                                    <span class="badge bg-light text-dark">{!car.Model__r.Name}</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">KMs Driven</span>
+                                    <span class="badge bg-light text-dark">{!car.KMs_Driven__c}Km</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">Year</span>
+                                    <span class="badge bg-light text-dark">{!car.Year__c}</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">Price</span>
+                                    <span class="badge bg-light text-dark">₹{!car.Price__c}</span>
+                                </h6>
+                                <br/>
+                                <h6 class="card-text">
+                                    <span class="badge bg-light text-dark">RTO</span>
+                                    <span class="badge bg-light text-dark">{!car.RTO__r.Name}</span>
+                                </h6>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </apex:repeat>
+
+                <h3 style="{!IF( isEmptyList == false, 'display:none', '')}">
+                    No Car Found
+                </h3>
+
+                <!-- Pagination -->
+                <table style="{!IF( isEmptyList == true, 'display:none', '')};width: 100%;margin-top: 10px">
+                    <tr>
+                        <td>
+                            Page:
+                            <apex:outputText value=" {!controller.PageNumber} of {! CEILING(controller.ResultSize / controller.PageSize) }" />
+                        </td>
+                        <td align="center">
+                            <!-- Previous page -->
+                            <!-- active -->
+                            <apex:commandLink action="{! controller.Previous }" value="« Previous" rendered="{! controller.HasPrevious }" />
+                            <!-- inactive (no earlier pages) -->
+                            <apex:outputText style="color: #ccc;" value="« Previous" rendered="{! NOT(controller.HasPrevious) }" /> &nbsp;&nbsp;
+                            <!-- Next page -->
+                            <!-- active -->
+                            <apex:commandLink action="{! controller.Next }" value="Next »" rendered="{! controller.HasNext }" />
+                            <!-- inactive (no more pages) -->
+                            <apex:outputText style="color: #ccc;" value="Next »" rendered="{! NOT(controller.HasNext) }" />
+                        </td>
+                        <td align="right">
+                            Records per page:
+                            <apex:selectList value="{! controller.PageSize }" size="1">
+                                <apex:selectOption itemValue="8" itemLabel="8" />
+                                <apex:selectOption itemValue="10" itemLabel="10" />
+                                <apex:actionSupport event="onchange" reRender="car_List" />
+                            </apex:selectList>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+
+    </apex:form>
+
+    <script>
+        var searchButton = document.querySelector('#searchButton');
+        searchButton.addEventListener("click", () => {
+            window.location = "/apex/CarsView?searchString=" + document.querySelector('#searchInput').value;
+        })
+    </script>
+</apex:page>
