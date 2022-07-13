@@ -6,11 +6,11 @@
                 label="Search" placeholder="Search for cars" value={searchKey}>
             </lightning-input>
 
-            <lightning-card title="Cars" if:false={data}>
-                <h1>Not Found</h1>
-            </lightning-card>
+            <template if:false={hasRecords}>
+                <h1>No Car Found</h1>
+            </template>
 
-            <lightning-layout multiple-rows="true" if:true={data}>
+            <lightning-layout multiple-rows="true" if:true={hasRecords}>
                 <template for:each={data} for:item="car">
                     <lightning-layout-item key={car.Id} size="3">
                         <c-car-tile car={car}></c-car-tile>
@@ -18,8 +18,7 @@
                 </template>
             </lightning-layout>
 
-            <p>Page: {page} of {totalPage}</p>
-            <c-paginator onprevious={handlePrevious} onnext={handleNext}></c-paginator>
+            <c-paginator if:true={hasRecords} onprevious={handlePrevious} onnext={handleNext} page={page} totalpages={totalPage}></c-paginator>
 
         </div>
     </lightning-card>

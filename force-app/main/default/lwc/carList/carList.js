@@ -56,4 +56,8 @@ export default class CarList extends LightningElement {
         this.startingRecord = this.startingRecord + 1;
     }
 
+    get hasRecords() {
+        return this.totalRecordCount > 0;
+    }
+
 }
