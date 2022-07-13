@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Cars" icon-name="utility:travel_and_places">
+        <div class="slds-card__body slds-card__body_inner">
+            
+            <lightning-input type="search" onchange={handleSearchTermChange} variant="label-hidden" class="slds-var-m-bottom_small"
+                label="Search" placeholder="Search for cars" value={searchKey}>
+            </lightning-input>
+
+            <lightning-card title="Cars" if:false={data}>
+                <h1>Not Found</h1>
+            </lightning-card>
+
+            <lightning-layout multiple-rows="true" if:true={data}>
+                <template for:each={data} for:item="car">
+                    <lightning-layout-item key={car.Id} size="3">
+                        <c-car-tile car={car}></c-car-tile>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+
+            <p>Page: {page} of {totalPage}</p>
+            <c-paginator onprevious={handlePrevious} onnext={handleNext}></c-paginator>
+
+        </div>
+    </lightning-card>
+</template>

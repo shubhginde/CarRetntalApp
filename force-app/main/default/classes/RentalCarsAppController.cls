@@ -32,4 +32,16 @@ public with sharing class RentalCarsAppController {
         List<Car__c> cars = (List<Car__c>) controller.getRecords();
         return cars;
     }
+
+    @AuraEnabled(cacheable=true scope='global')
+    public static List<Car__c> getAllCars(String searchKey) {
+        searchKey = String.isBlank(searchKey) ? '%' : '%' + searchKey + '%';
+
+        return [SELECT ID, Name, Car_Owner__r.Name, Brand__r.Name,
+            Model__r.Name, Kms_Driven__c, Price__c, Year__c, RTO__r.Name
+            FROM Car__c
+            WHERE Brand__r.Name LIKE :searchKey
+            OR Model__r.Name LIKE :searchKey
+            OR RTO__r.Name LIKE :searchKey];
+    }
 }

@@ -1,6 +1,6 @@
 public without sharing class CarTriggerHandler implements TriggerHandler {
-    private boolean triggerIsExecuting;
-    private integer triggerSize;
+    private Boolean triggerIsExecuting;
+    private Integer triggerSize;
     public CarTriggerHelper helper;
     public CarTriggerHandler(boolean triggerIsExecuting, integer triggerSize) {
         this.triggerIsExecuting = triggerIsExecuting;
@@ -20,11 +20,11 @@ public without sharing class CarTriggerHandler implements TriggerHandler {
         // helper.doTask1();
     }
     public void afterInsert(List<Car__c> newCars, Map<ID, SObject> newCarMap) {
-        helper.insertCarAuditRecord();
+        helper.insertCarAuditRecord(newCars, 'INSERT');
         // helper.doTask3();
     }
     public void afterUpdate(List<Car__c> oldCars, List<Car__c> newCars, Map<ID, SObject> oldCarMap, Map<ID, SObject> newCarMap) {
-        helper.insertCarAuditRecord();
+        helper.insertCarAuditRecord(newCars, 'UPDATE');
         // helper.doTask5();
     }
     public void afterDelete(List<Car__c> oldCars, Map<ID, SObject> oldCarMap) {

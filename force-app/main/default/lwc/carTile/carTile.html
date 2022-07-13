@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title={carBrandandModel}>
+        <p>Car ID: {car.Name}</p>
+        <p>Car Owner: {car.Car_Owner__r.Name}</p>
+        <p>Brand: {car.Brand__r.Name}</p>
+        <p>Model: {car.Model__r.Name}</p>
+        <p>KMs Driven: {car.Kms_Driven__c}Km</p>
+        <p>Year: {car.Year__c}</p>
+        <p>Price: ₹{car.Price__c}</p>
+        <p>RTO: {car.RTO__r.Name}</p>
+    </lightning-card>
+</template>
