@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="Cars" icon-name="utility:travel_and_places">
+    <lightning-card class="root" title="Cars" icon-name="utility:travel_and_places">
         <div class="slds-card__body slds-card__body_inner">
             
             <lightning-input type="search" onchange={handleSearchTermChange} variant="label-hidden" class="slds-var-m-bottom_small"
@@ -18,7 +18,8 @@
                 </template>
             </lightning-layout>
 
-            <c-paginator if:true={hasRecords} onprevious={handlePrevious} onnext={handleNext} page={page} totalpages={totalPage}></c-paginator>
+            <c-paginator if:true={hasRecords} onprevious={handlePrevious} onnext={handleNext} page={page} totalpages={totalPage}
+             onpsizeselected={handleSizeSelected}></c-paginator>
 
         </div>
     </lightning-card>

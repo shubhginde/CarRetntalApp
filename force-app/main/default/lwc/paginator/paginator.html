@@ -1,14 +1,15 @@
 <template>
-    <p>Page: {page} of {totalpages}</p>
-    <lightning-layout>
-        <lightning-layout-item>
-            <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={handlePrevious}>
-            </lightning-button>
-        </lightning-layout-item>
-        <lightning-layout-item flexibility="grow"></lightning-layout-item>
-        <lightning-layout-item>
-            <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={handleNext}>
-            </lightning-button>
-        </lightning-layout-item>
-    </lightning-layout>
+
+    <div class='parent'>
+        <p>Page: {page} of {totalpages}</p>
+
+        <div>
+            <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={handlePrevious}></lightning-button>
+            <lightning-button class="button" label="Next" icon-name="utility:chevronright" onclick={handleNext}></lightning-button>
+        </div>
+
+        <lightning-combobox dropdown-alignment="bottom-left"  value=8 label="Records Per Page"
+            options={options} onchange={handleChange}></lightning-combobox>
+    </div>
+
 </template>

@@ -1,0 +1,15 @@
+.parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.button {
+    margin-left: 10px;
+}
+
+p {
+    display: inline;
+}

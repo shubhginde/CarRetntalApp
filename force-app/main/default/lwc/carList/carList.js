@@ -60,4 +60,19 @@ export default class CarList extends LightningElement {
         return this.totalRecordCount > 0;
     }
 
+    handleSizeSelected(event) {
+        this.pageSize = parseInt(event.detail);
+        this.totalPage = Math.ceil(this.totalRecordCount / this.pageSize);
+        this.data = this.allCars.slice(0, this.pageSize);
+        this.endingRecord = this.pageSize;
+    }
+
+    get options() {
+        return [
+            { label: 'High to low', value: '4' },
+            { label: 'Low to Hogh', value: '8' },
+            { label: '12', value: '12' },
+        ];
+    }
+
 }

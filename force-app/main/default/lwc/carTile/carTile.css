@@ -1,0 +1,42 @@
+hr {
+    margin: 0 0;
+}
+
+
+.card {
+   border-radius: 0.75rem;
+   color: whitesmoke;
+   background: #121212;
+   align-items: center;
+}
+
+.card-details {
+   padding: 1rem;
+}
+
+.name {
+   font-size: 1.25rem;
+}
+
+.card-about {
+   margin-top: 1rem;
+   display: grid;
+   grid-auto-flow: column;
+}
+
+.item {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 0.5rem;
+}
+
+.label {
+    margin-top: 0.15rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.value {
+    font-size: 1rem;
+}

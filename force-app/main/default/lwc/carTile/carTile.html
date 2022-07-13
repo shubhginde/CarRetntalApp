@@ -1,5 +1,5 @@
-<template>
-    <lightning-card title={carBrandandModel}>
+<!-- <template>
+    <lightning-card title={carBrandandModel} class="container">
         <p>Car ID: {car.Name}</p>
         <p>Car Owner: {car.Car_Owner__r.Name}</p>
         <p>Brand: {car.Brand__r.Name}</p>
@@ -8,5 +8,49 @@
         <p>Year: {car.Year__c}</p>
         <p>Price: ₹{car.Price__c}</p>
         <p>RTO: {car.RTO__r.Name}</p>
+    </lightning-card>
+</template> -->
+
+
+<template>
+    <lightning-card>
+        <div class="card slds-media__body">
+            <div class="card-details">
+                <div class="name">{carBrandandModel}</div>
+                <div class="occupation">{car.Name}</div>
+                <div class="card-about">
+                    <div class="item">
+                        <span class="value">{car.Car_Owner__r.Name}</span>
+                        <span class="label">Car Owner</span>
+                    </div>
+                    <div class="item">
+                        <span class="value">{car.Brand__r.Name}</span>
+                        <span class="label">Brand</span>
+                    </div>
+                    <div class="item">
+                        <span class="value">{car.Model__r.Name}</span>
+                        <span class="label">Model</span>
+                    </div>
+                </div>
+                <div class="card-about">
+                    <div class="item">
+                        <span class="value">₹ {car.Price__c}</span>
+                        <span class="label">Price</span>
+                    </div>
+                    <div class="item">
+                        <span class="value">{car.Year__c} </span>
+                        <span class="label">Year</span>
+                    </div>
+                    <div class="item">
+                        <span class="value">{car.Kms_Driven__c} Km</span>
+                        <span class="label">KMs Driven</span>
+                    </div>
+                    <div class="item">
+                        <span class="value">{car.RTO__r.Name}</span>
+                        <span class="label">RTO</span>
+                    </div>                    
+                </div>
+            </div>
+        </div>
     </lightning-card>
 </template>
