@@ -13,7 +13,7 @@
 
 
 <template>
-    <lightning-card>
+    <lightning-card onclick={handleShowModal}>
         <div class="card slds-media__body">
             <div class="card-details">
                 <div class="name">{carBrandandModel}</div>
@@ -24,33 +24,22 @@
                         <span class="label">Car Owner</span>
                     </div>
                     <div class="item">
-                        <span class="value">{car.Brand__r.Name}</span>
-                        <span class="label">Brand</span>
-                    </div>
-                    <div class="item">
-                        <span class="value">{car.Model__r.Name}</span>
-                        <span class="label">Model</span>
-                    </div>
-                </div>
-                <div class="card-about">
-                    <div class="item">
-                        <span class="value">₹ {car.Price__c}</span>
-                        <span class="label">Price</span>
-                    </div>
-                    <div class="item">
-                        <span class="value">{car.Year__c} </span>
-                        <span class="label">Year</span>
-                    </div>
-                    <div class="item">
-                        <span class="value">{car.Kms_Driven__c} Km</span>
+                        <span class="value">{kmsDriven} Km</span>
                         <span class="label">KMs Driven</span>
                     </div>
                     <div class="item">
                         <span class="value">{car.RTO__r.Name}</span>
                         <span class="label">RTO</span>
-                    </div>                    
+                    </div>
+                </div>
+                <div class="card-about">
+                    <div class="item">
+                        <span class="value price">₹ {carPrice}</span>
+                        <span class="label">Price</span>
+                    </div>            
                 </div>
             </div>
         </div>
     </lightning-card>
+    <c-car-details-popup car={car}></c-car-details-popup>
 </template>
