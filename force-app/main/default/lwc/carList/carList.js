@@ -26,7 +26,6 @@ export default class CarList extends LightningElement {
     handleSearchTermChange(event) {
         window.clearTimeout(this.delayTimeout);
 		const searchKey = event.target.value;
-		// eslint-disable-next-line @lwc/lwc/no-async-operation
 		this.delayTimeout = setTimeout(() => {
 			this.searchKey = searchKey;
 		}, 300);
