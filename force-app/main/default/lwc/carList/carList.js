@@ -67,12 +67,4 @@ export default class CarList extends LightningElement {
         this.endingRecord = this.pageSize;
     }
 
-    get options() {
-        return [
-            { label: 'High to low', value: '4' },
-            { label: 'Low to Hogh', value: '8' },
-            { label: '12', value: '12' },
-        ];
-    }
-
 }
