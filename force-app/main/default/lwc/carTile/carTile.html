@@ -1,22 +1,18 @@
-<!-- <template>
-    <lightning-card title={carBrandandModel} class="container">
-        <p>Car ID: {car.Name}</p>
-        <p>Car Owner: {car.Car_Owner__r.Name}</p>
-        <p>Brand: {car.Brand__r.Name}</p>
-        <p>Model: {car.Model__r.Name}</p>
-        <p>KMs Driven: {car.Kms_Driven__c}Km</p>
-        <p>Year: {car.Year__c}</p>
-        <p>Price: ₹{car.Price__c}</p>
-        <p>RTO: {car.RTO__r.Name}</p>
-    </lightning-card>
-</template> -->
-
-
 <template>
-    <lightning-card onclick={handleShowModal}>
+    <lightning-card>
         <div class="card slds-media__body">
             <div class="card-details">
-                <div class="name">{carBrandandModel}</div>
+                <div class="head">
+                    <div class="name">{carBrandandModel}</div>
+                    <div>
+                        <lightning-button-icon icon-name="utility:record_update" icon-class="car-edit-button" variant="bare"
+                            alternative-text="Edit record" onclick={handleEditCar}><label>edit</label>
+                        </lightning-button-icon>
+                        <lightning-button-icon icon-name="utility:delete" icon-class="car-edit-button" variant="bare"
+                            alternative-text="Delete record" onclick={handleDelCar}><label>delete</label>
+                        </lightning-button-icon>
+                    </div>
+                </div>
                 <div class="occupation">{car.Name}</div>
                 <div class="card-about">
                     <div class="item">
@@ -41,5 +37,5 @@
             </div>
         </div>
     </lightning-card>
-    <c-car-details-popup car={car}></c-car-details-popup>
+    <c-car-edit-form car={car} oncarupdate={handleUpdate}></c-car-edit-form>
 </template>

@@ -1,0 +1,14 @@
+<template>
+    <lightning-card class="root" title="Cars" icon-name="utility:travel_and_places">
+        <div class="slds-card__body slds-card__body_inner">
+            <c-search onsearch={handleSearchTermChange}></c-search>
+            <lightning-button variant="brand" label="Create New Car Record" title="Create New Car Record" onclick={handleNewRecord}></lightning-button>
+            <!-- <lightning-button variant="brand" label="Refresh" title="Refresh" onclick={handleRefreshButton}>
+            </lightning-button> -->
+            <c-car-add-form oncreated={fetchCars}></c-car-add-form>
+            <c-car-list cars={data} oncarupdate={handleUpdate} ondelete={fetchCars}></c-car-list>
+            <c-paginator if:true={hasRecords} onprevious={handlePrevious} onnext={handleNext} page={page} totalpages={totalPage}
+                onpsizeselected={handleSizeSelected}></c-paginator>
+        </div>
+    </lightning-card>
+</template>

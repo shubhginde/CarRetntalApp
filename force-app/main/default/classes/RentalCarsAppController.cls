@@ -33,7 +33,7 @@ public with sharing class RentalCarsAppController {
         return cars;
     }
 
-    @AuraEnabled(cacheable=true scope='global')
+    @AuraEnabled(cacheable=false)
     public static List<Car__c> getAllCars(String searchKey) {
         searchKey = String.isBlank(searchKey) ? '%' : '%' + searchKey + '%';
 

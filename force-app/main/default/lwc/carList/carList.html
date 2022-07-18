@@ -1,26 +1,12 @@
 <template>
-    <lightning-card class="root" title="Cars" icon-name="utility:travel_and_places">
-        <div class="slds-card__body slds-card__body_inner">
-            
-            <lightning-input type="search" onchange={handleSearchTermChange} variant="label-hidden" class="slds-var-m-bottom_small"
-                label="Search" placeholder="Search for cars" value={searchKey}>
-            </lightning-input>
-
-            <template if:false={hasRecords}>
-                <h1>No Car Found</h1>
-            </template>
-
-            <lightning-layout multiple-rows="true" if:true={hasRecords}>
-                <template for:each={data} for:item="car">
-                    <lightning-layout-item key={car.Id} size="3">
-                        <c-car-tile car={car}></c-car-tile>
-                    </lightning-layout-item>
-                </template>
-            </lightning-layout>
-
-            <c-paginator if:true={hasRecords} onprevious={handlePrevious} onnext={handleNext} page={page} totalpages={totalPage}
-             onpsizeselected={handleSizeSelected}></c-paginator>
-
-        </div>
-    </lightning-card>
+    <template if:false={hasRecords}>
+        <h1>No Car Found</h1>
+    </template>
+    <lightning-layout multiple-rows="true" if:true={hasRecords}>
+        <template for:each={cars} for:item="car">
+            <lightning-layout-item key={car.Id} size="3">
+                <c-car-tile car={car} oncarupdate={handleRUpdate} ondelrefresh={handleDelRefresh} ></c-car-tile>
+            </lightning-layout-item>
+         </template>
+    </lightning-layout>
 </template>
